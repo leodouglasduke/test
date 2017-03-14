@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    var passcode = '123112312312312312312312312';
+    /*
+      定义密码的规则：
+      1、密码长度为6～16位有效字符。
+      2、如果密码是纯数字，则密码强度弱；
+      3、密码中包含数字和字母的组合，则密码强度中等；
+      4、密码中包含数字、大小写字母、下划线的组合，密码强度强；
+    */
+    var low = /^[0-9]{6,16}$/g;
+    var middle = /^[a-zA-Z0-9]{6,16}$/g;
+    var high = /^[a-zA-Z0-9_]{6,16}$/g;
+    if (low.test(passcode)) {
+      console.log('密码安全等级弱');
+    } else if (middle.test(passcode)) {
+      console.log('密码安全等级中');
+    } else if (high.test(passcode)) {
+      console.log('密码安全等级强');
+    } else {
+      console.log('密码不符合条件');
+    }
+
+
+
+
+  </script>
+</html>

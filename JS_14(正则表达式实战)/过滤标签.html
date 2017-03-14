@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <p id='aa' style="width:100px;height:100px">
+        脚神是一个宇宙
+        <strong>无敌</strong>
+        <em>大帅比</em>
+        <br>
+        <br/>
+        <BR>
+        <br />
+        <BR />
+        <span><i>男优</i>表示呵呵</span>
+    </p>
+</body>
+<script type="text/javascript">
+  var para = document.getElementsByTagName('p')[0];
+  var html = para.outerHTML;
+  console.log(html);
+  //定义正则表达式来过滤html标签
+  // var regExp = /<\/?[a-zA-Z]+>/g;
+  var regExp = /<[^<]+>/g;
+  console.log(html.replace(regExp, function($0){
+    // console.log($0);
+    // var reg = /<br\s?\/?>/gi;
+    // if (reg.test($0)) {
+    //   return '\n';
+    // }
+    // return '';
+    var tmp = '';
+    for (var i = 0; i < $0.length; i++) {
+      tmp += '*';
+    }
+    return tmp;
+  }));
+
+
+
+</script>
+
+
+
+</html>

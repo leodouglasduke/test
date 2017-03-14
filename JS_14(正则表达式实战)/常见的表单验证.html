@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    //1、验证中文姓名是否合法
+    var name = '好脚神';
+    /*验证字符串从头到尾是否全部由中文组成
+    最少2个字，最多4个字*/
+    var re = /^[\u4e00-\u9fa5]{2,4}$/g;
+    console.log(re.test(name));
+    //2、手机号码的验证
+    /*手机号码必须是11位，第一位是1，
+    第二位［3，4，5，7，8］之间的任意一位
+    其余九位纯数字组成
+    */
+    var phone = '13186008891';
+    re = /^1[34578]\d{9}$/g;
+    console.log(re.test(phone));
+    //3、邮箱验证
+    var mail = 'mouxiangyang@lanou3g.com';
+    /*邮箱必须以字母、数字或者下划线开头，并且
+    可以出现一次或者多次，加上@符，@符之后以多位
+    字母或者数字组成，匹配点符号，点符号后面可以跟
+    不超过三位的字母
+    */
+    re = /^[a-zA-Z0-9_]+@[a-z0-9]+(\.[a-z]{1,3})$/g;
+    console.log(re.test(mail));
+    //4、QQ号码验证
+    var qq = '294566636';
+    re = /^[1-9]\d{4,10}$/g;
+    console.log(re.test(qq));
+    //5、验证邮政编码
+    var postcode = '710000';
+    re = /\d{6}/g;
+    //6、验证网址格式正确
+    var URLString = 'http://www.baidu.com';
+    URLString = 'https://www.baidu.com';
+    URLString = 'ftp://www.baidu.com';
+    // URLString = 'mms://www.baidu.com';
+    // URLString = 'rsfp://www.baidu.com';
+    re = /^[a-z]+:\/\/[a-z0-9]+\.[a-z0-9]+(\.[a-z]{2,3})+$/g;
+    //7、验证身份证号码
+    var idcode = '610323198301261116';
+
+
+
+
+
+
+  </script>
+</html>

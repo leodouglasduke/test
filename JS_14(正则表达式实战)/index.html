@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>密码验证组件</title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        border: 1px solid skyblue;
+      }
+      .wrap {
+        width: 100%;
+        margin-top: 200px;
+        text-align: center;
+      }
+      #needed {
+        color: red;
+        text-align: center;
+        vertical-align: middle;
+        height: 10px;
+        line-height: 20px;
+        display: inline-block;
+      }
+      #input_area {
+        width: 400px;
+        height: 30px;
+        display: inline-block;
+        border: none;
+        border: 1px solid skyblue;
+        border-radius: 3px;
+      }
+      #desc {
+        padding-top: 10px;
+        font-size: 14px;
+        color: gray;
+        text-align: left;
+        display: inline-block;
+      }
+      #input_wrap, #place_wrap {
+        display: inline-block;
+      }
+      #place_wrap {
+        vertical-align: top;
+        margin-top: 6px;
+      }
+      ul {
+        float: right;
+        list-style: none;
+        display: inline-block;
+        opacity: 0;
+      }
+      #secure_wrap ul li {
+        width: 100px;
+        float: left;
+      }
+      #secure_wrap ul li div {
+        font-size: 15px;
+        height: 20px;
+        color: white;
+        background: lightgray;
+        margin-right: 3px;
+        margin-top: 6px;
+        line-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div id="place_wrap">
+        <span id="needed"><strong>*</strong></span>
+        <span id="placeholder">密码：</span>
+      </div><!--
+      --><div id="input_wrap">
+        <input id="input_area" type="text">
+        <div id="secure_wrap">
+          <p id="desc">
+            6~16个字符，区分大小写
+          </p>
+          <ul id="secure_list">
+            <li><div id="low">
+              弱
+            </div></li>
+            <li><div id="middle">
+              中
+            </div></li>
+            <li><div id="high">
+              强
+            </div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var input = document.getElementById('input_area');
+    var low = document.getElementById('low');
+    var middle = document.getElementById('middle');
+    var high = document.getElementById('high');
+    var secure_list = document.getElementById('secure_list');
+
+    function handleKeyupEvent(event) {
+      event = event || window.event;
+      var passcode = input.value;
+
+      var lowReg = /^[0-9]{6,16}$/g;
+      var middleReg = /^[a-zA-Z0-9]{6,16}$/g;
+      var highReg = /^[a-zA-Z0-9_]{6,16}$/g;
+
+      if (lowReg.test(passcode)) {
+        console.log('密码安全等级弱');
+        secure_list.style.opacity = "1";
+        secure_list.style.transition = '1s';
+        setTimeout(function(){
+          low.style.background = 'yellow';
+          low.style.transition = '1s';
+          low.style.color = 'skyblue';
+        }, 500);
+      } else if (middleReg.test(passcode)) {
+        console.log('密码安全等级中');
+        secure_list.style.opacity = "1";
+        secure_list.style.transition = '1s';
+        setTimeout(function(){
+          low.style.background = 'orange';
+          low.style.transition = '1s';
+          middle.style.background = 'orange';
+          middle.style.transition = '1s';
+          middle.style.color = 'skyblue';
+        }, 500);
+      } else if (highReg.test(passcode)) {
+        console.log('密码安全等级强');
+        secure_list.style.opacity = "1";
+        secure_list.style.transition = '1s';
+        setTimeout(function(){
+          low.style.background = 'red';
+          low.style.transition = '1s';
+          middle.style.background = 'red';
+          middle.style.transition = '1s';
+          high.style.background = 'red';
+          high.style.transition = '1s';
+          high.style.color = 'skyblue';
+        }, 500);
+      } else {
+        console.log('密码不符合条件');
+        secure_list.style.opacity = '0';
+        low.style.color = 'white';
+        middle.style.color = 'white';
+        high.style.color = 'white';
+      }
+    }
+
+    document.addEventListener('keyup', handleKeyupEvent, false);
+  </script>
+</html>
