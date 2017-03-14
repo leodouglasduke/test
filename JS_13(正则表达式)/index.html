@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    var string = 'a1b222222222222c37d4e5f6';
+    var array = [];
+    var temp = '';
+    for (var i = 0; i < string.length + 1; i++) {
+        if (string[i] >= '0' && string[i] <= '9') {
+          temp += string[i];
+          if (i == string.length - 1) {
+            array.push(temp);
+          }
+          continue;
+        } else {
+          if (temp != '') {
+            array.push(temp);
+          }
+          temp = '';
+        }
+    }
+    console.log(array);
+    //演示正则表达式来获取字符串中的所有数字
+    //g
+    var numbers = string.match('37');
+    console.log(numbers);
+    /*
+    正则表达式的三个功能：
+    1、快速匹配指定字符串
+    2、替换遵照正则表达式规则的字符串
+    3、在目标字符串中筛选指定的子字符串
+    正则表达式语法：
+    正则表达式就是由普通字符（例如：a～z）和元字符（特殊字符）
+    组成的文字模式，该模式描述在查找文字主体时待匹配的一个或
+    多个字符串。正则表达式作为一个模版，将某个字符串模式与所
+    搜索的字符串进行匹配。
+    */
+    //1、创建正则表达式对象
+    //(正则表达式英文：regular expression)
+    var reg = new RegExp('abc');//类似数组已有的对象
+    /*构造正则表达式对象时使用的构造函数有两个参数：
+    1、待匹配的字符串模版
+    2、是匹配是的模式，共三种模式，这三种模式可以组合使用
+    i:不区分大小写
+    g:全局查找，整个目标字符串范围内
+    m:多行查找
+    */
+    reg = new RegExp('abc', 'g');
+    //case sensitive：大小写敏感
+    //case insensitive：大小写不敏感
+    reg = new RegExp('a', 'gi');//匹配所有的a或者A
+    var arr = new Array();
+    arr = [];
+    //正则表达式的简写形式，字面量形式
+    /*双斜杠中包含的就是要被匹配的文字
+    双斜杠后面是模式组合*/
+    var regExp = /a/gi;
+    //正则表达式对象提供的test方法用于检测参数字符串是否有
+    //符合表达式模版的文字，如果有则返回true，没有则返回false
+    var result = regExp.test('1111a');
+    console.log(result);
+    var str = 'l eeee\nafdfasdf love33\nadf\ndfa \n is dog';
+    regExp = /love\W/i;
+    console.log('xxx:' + regExp.test(str));
+    //如果要匹配目标字符串是否以love开头
+    //需要通过元字符^来匹配
+    //^用来匹配开头是否包含正则表达式模板
+    regExp = /^love/gi;
+    console.log(regExp.test(str));
+    //要匹配结尾需要通过元字符$来匹配
+    regExp = /love$/gi;
+    console.log(regExp.test(str));
+    //\s是空白符，属于转义字符，类似于\n(换行符)
+    regExp = /love\s/gi;
+    console.log(regExp.test(str));
+    //匹配的目标要能够构成单词，可以使用\W
+    regExp = /love\W/gi;
+    console.log(regExp.test(str));
+    //如果要匹配数组，则需要使用到转义字符\d
+    //d:digital即数字的意思
+    regExp = /love\d/gi;
+    console.log(regExp.test(str));
+    //元字符中的或者 |
+    str = '22334455';
+    regExp = /77|66/g;
+    console.log('|元字符:'+ regExp.test(str));
+    //重复类
+    str = '21111161113111';
+    regExp = /1{6}/g;
+    console.log('设定连续重复次数为6次' + regExp.test(str));
+    regExp = /1{2,}/g;
+    console.log('设定最少连续重复2次' + regExp.test(str));
+    regExp = /1{2,4}/g;
+    console.log('最少连续重复2次最多4次' + regExp.test(str));
+    //元字符＋的意义为匹配目标至少连续出现一次
+    //等效于{1,}
+    regExp = /1+/g;
+    console.log(str.match(regExp));
+    regExp = /1?/g;//{0,1}表示最多出现一次
+    console.log(str.match(regExp));
+    //字符类[]
+    regExp = /[1]/g;//匹配方括号内的任意一项
+    console.log(str.match(regExp));
+    //连字符-
+    //匹配0到4范围内的任意数字
+    regExp = /[0-4]/g;
+    console.log(str.match(regExp));
+    //^[]配合还有除外的意思
+    str = 'aaa123bbb123ccc';
+    regExp = /[^123]/g;//除了123之外的其他项都被匹配
+    console.log(str.match(regExp));
+    str = 'abcEfGhkLz';
+    regExp = /[a-z]/gi;
+    regExp = /[a-zA-Z]/g;//匹配字母包括大小写
+    console.log(str.match(regExp));
+    //匹配字符串中的汉字
+    str = 'today 脚神 go 洗脚被抓';
+    regExp = /[\u4e00-\u9fa5]+/g;
+    console.log(str.match(regExp));
+    str = '6103211984022611111';
+    regExp = /^\d{17}(\d|x|X)$/g;
+    console.log(regExp.test(str));
+
+
+    var testString = ' hello   world ';
+    var re = /^\s+|\s+$/g;
+    var resultString = testString.replace(re, '*');
+    console.log(resultString);
+    var year = '2016+-08+-16';
+    re = /((\d+)(\+))(-)/g;
+    //(\d+)(-)
+    var count = 1;
+    result = year.replace(re, function($0, $1, $2){
+      console.log(arguments);
+       return $1 + '.';
+    });
+    console.log(result);
+
+
+
+
+  </script>
+
+</html>
